@@ -1,0 +1,19 @@
+{
+  "name": "tic-tac-toe-term",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvdhaduk-simform/tic-tac-toe-term.git"
+  },
+  "author": "Dhruv Dhaduk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhruvdhaduk-simform/tic-tac-toe-term/issues"
+  },
+  "homepage": "https://github.com/dhruvdhaduk-simform/tic-tac-toe-term#readme",
+  "description": ""
+}
