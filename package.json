@@ -6,7 +6,8 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "npm run clean && webpack",
-        "dev": "npm run clean && webpack --watch"
+        "dev": "npm run clean && webpack --watch",
+        "start": "node dist/bundle.mjs"
     },
     "repository": {
         "type": "git",
