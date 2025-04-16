@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "clean": "rm -rf dist",
-        "build": "npm run clean && webpack",
+        "build": "npm run clean && webpack && cp run.sh dist/run.sh",
         "dev": "npm run clean && webpack --watch",
         "start": "node dist/bundle.mjs",
         "format": "prettier src --write"
