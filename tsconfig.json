@@ -106,7 +106,7 @@
         // "allowUnusedLabels": true,                        /* Disable error reporting for unused labels. */
         // "allowUnreachableCode": true,                     /* Disable error reporting for unreachable code. */
 
-        "jsx": "react",
+        "jsx": "react-jsx",
 
         /* Completeness */
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */

@@ -1,5 +1,6 @@
-import { render, Text } from 'ink';
-import React, { useState, useEffect } from 'react';
-import Counter from './Counter';
+import { render } from 'ink';
+import App from './App';
 
-render(<Counter />);
+console.clear();
+
+render(<App />);
