@@ -1,6 +1,11 @@
 import { Text, useInput, useApp, Box } from 'ink';
 import { useEffect, useState } from 'react';
 
+import Board from './components/Board';
+import Details from './components/Details';
+
+import { DimensionContext } from './contexts/DimensionContext';
+
 function App() {
     const { exit } = useApp();
     const [terminalDimensions, setTerminalDimensions] = useState({
@@ -29,24 +34,24 @@ function App() {
         }
     });
 
+    const aspectRatio = terminalDimensions.width / terminalDimensions.height;
+
     return (
-        <Box
-            width={terminalDimensions.width}
-            height={terminalDimensions.height}
-            borderColor="white"
-            borderStyle="single"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap={1}
-        >
-            <Text color="green">Hello, World ! </Text>
-            <Text color="green">Press "q" to exit.</Text>
-            <Text>
-                Dimensions : {terminalDimensions.width} x{' '}
-                {terminalDimensions.height}
-            </Text>
-        </Box>
+        <DimensionContext.Provider value={terminalDimensions}>
+            <Box
+                width={terminalDimensions.width}
+                height={terminalDimensions.height}
+                borderColor="white"
+                borderStyle="single"
+                flexDirection={aspectRatio > 2 ? 'row' : 'column'}
+                justifyContent="center"
+                alignItems="stretch"
+                gap={1}
+            >
+                <Board />
+                <Details />
+            </Box>
+        </DimensionContext.Provider>
     );
 }
 
