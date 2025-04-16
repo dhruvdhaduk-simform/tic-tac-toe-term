@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 
 function App() {
     const { exit } = useApp();
-    // const rows = process.stdout.rows;
-    // const columns = process.stdout.columns;
     const [terminalDimensions, setTerminalDimensions] = useState({
         width: process.stdout.columns,
         height: process.stdout.rows,
