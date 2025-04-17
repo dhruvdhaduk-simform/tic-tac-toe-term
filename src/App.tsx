@@ -5,6 +5,7 @@ import Board from './components/Board';
 import Details from './components/Details';
 
 import { DimensionContext } from './contexts/DimensionContext';
+import useGame from './hooks/useGame';
 
 function App() {
     const { exit } = useApp();
@@ -12,6 +13,8 @@ function App() {
         width: process.stdout.columns,
         height: process.stdout.rows,
     });
+
+    const { gameState } = useGame();
 
     useEffect(() => {
         const handleResize = () => {
@@ -46,7 +49,7 @@ function App() {
                 alignItems="stretch"
                 gap={1}
             >
-                <Board />
+                <Board gameState={gameState} />
                 <Details />
             </Box>
         </DimensionContext.Provider>

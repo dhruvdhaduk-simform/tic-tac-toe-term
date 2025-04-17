@@ -1,7 +1,8 @@
 import { Box } from 'ink';
 import Cell from './Cell';
+import type { GameState } from '../gameTypes';
 
-function Board() {
+function Board({ gameState }: { gameState: GameState }) {
     return (
         <Box
             borderColor="blackBright"
@@ -11,21 +12,13 @@ function Board() {
             alignItems="center"
             paddingX={2}
         >
-            <Box gap={1}>
-                <Cell option="O" />
-                <Cell option="X" />
-                <Cell option="O" />
-            </Box>
-            <Box gap={1}>
-                <Cell option="X" />
-                <Cell option="O" />
-                <Cell option="O" />
-            </Box>
-            <Box gap={1}>
-                <Cell option="O" />
-                <Cell option="X" />
-                <Cell option="X" />
-            </Box>
+            {gameState.map((gameStateRow) => (
+                <Box gap={1}>
+                    {gameStateRow.map((gameStateCell) => (
+                        <Cell option={gameStateCell} />
+                    ))}
+                </Box>
+            ))}
         </Box>
     );
 }

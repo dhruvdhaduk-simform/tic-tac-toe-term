@@ -1,13 +1,26 @@
 import { Box } from 'ink';
 import O from './O';
 import X from './X';
+import type { JSX } from 'react';
 
-function Cell({ option }: { option: 'O' | 'X' }) {
-    const content = option === 'O' ? <O /> : <X />;
+import type { CellOption } from '../gameTypes';
+
+function Cell({ option }: { option: CellOption }) {
+    let content: JSX.Element | '';
+    switch (option) {
+        case 'O':
+            content = <O />;
+            break;
+        case 'X':
+            content = <X />;
+            break;
+        default:
+            content = '';
+    }
 
     return (
         <Box
-            width={14}
+            width={13}
             height={7}
             borderColor="white"
             borderStyle="single"
