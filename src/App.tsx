@@ -7,7 +7,13 @@ import Details from './components/Details';
 import { DimensionContext } from './contexts/DimensionContext';
 import useGame from './hooks/useGame';
 
-function App() {
+function App({
+    player1Name,
+    player2Name,
+}: {
+    player1Name: string;
+    player2Name: string;
+}) {
     const { exit } = useApp();
     const [terminalDimensions, setTerminalDimensions] = useState({
         width: process.stdout.columns,
@@ -61,7 +67,7 @@ function App() {
                 gap={1}
             >
                 <Board gameState={gameState} focusCell={focusCell} />
-                <Details />
+                <Details player1Name={player1Name} player2Name={player2Name} />
             </Box>
         </DimensionContext.Provider>
     );
