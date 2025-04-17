@@ -3,7 +3,7 @@ import { Box, Text } from 'ink';
 function Details() {
     return (
         <Box
-            borderColor="white"
+            borderColor="blackBright"
             borderStyle="single"
             flexDirection="column"
             justifyContent="center"
@@ -11,7 +11,7 @@ function Details() {
             gap={1}
             flexGrow={1}
         >
-            <Text>Details</Text>
+            <Text>Press "q" to exit.</Text>
         </Box>
     );
 }

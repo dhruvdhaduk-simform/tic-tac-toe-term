@@ -1,46 +1,30 @@
-import { Box, Text } from 'ink';
-import { DimensionContext } from '../contexts/DimensionContext';
-import { useContext } from 'react';
+import { Box } from 'ink';
+import Cell from './Cell';
 
 function Board() {
-    const terminalDimensions = useContext(DimensionContext);
-
-    let boardWidth: number;
-    let boardHeight: number;
-
-    const aspectRatio = terminalDimensions.width / terminalDimensions.height;
-
-    if (aspectRatio > 2) {
-        boardWidth = terminalDimensions.width / 2 - 2;
-        boardHeight = boardWidth / 2;
-    } else {
-        boardHeight = terminalDimensions.height / 2 - 2;
-        boardWidth = boardHeight * 2;
-    }
-
     return (
         <Box
-            borderColor="white"
+            borderColor="blackBright"
             borderStyle="single"
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            gap={1}
-            // flexGrow={1}
+            paddingX={2}
         >
-            <Box>
-                <Box
-                    borderColor="white"
-                    borderStyle="single"
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    gap={1}
-                    width={boardWidth}
-                    height={boardHeight}
-                >
-                    <Text>Board</Text>
-                </Box>
+            <Box gap={1}>
+                <Cell option="O" />
+                <Cell option="X" />
+                <Cell option="O" />
+            </Box>
+            <Box gap={1}>
+                <Cell option="X" />
+                <Cell option="O" />
+                <Cell option="O" />
+            </Box>
+            <Box gap={1}>
+                <Cell option="O" />
+                <Cell option="X" />
+                <Cell option="X" />
             </Box>
         </Box>
     );

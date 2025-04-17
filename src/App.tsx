@@ -41,8 +41,6 @@ function App() {
             <Box
                 width={terminalDimensions.width}
                 height={terminalDimensions.height}
-                borderColor="white"
-                borderStyle="single"
                 flexDirection={aspectRatio > 2 ? 'row' : 'column'}
                 justifyContent="center"
                 alignItems="stretch"
