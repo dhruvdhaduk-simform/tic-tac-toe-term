@@ -5,7 +5,7 @@ import type { JSX } from 'react';
 
 import type { CellOption } from '../gameTypes';
 
-function Cell({ option }: { option: CellOption }) {
+function Cell({ option, isFocus }: { option: CellOption; isFocus: boolean }) {
     let content: JSX.Element | '';
     switch (option) {
         case 'O':
@@ -22,8 +22,8 @@ function Cell({ option }: { option: CellOption }) {
         <Box
             width={13}
             height={7}
-            borderColor="white"
-            borderStyle="single"
+            borderColor={isFocus ? 'yellow' : 'white'}
+            borderStyle={isFocus ? 'double' : 'single'}
             justifyContent="center"
             alignItems="center"
             flexDirection="column"

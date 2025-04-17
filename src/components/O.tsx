@@ -1,6 +1,5 @@
 import { Text, Newline } from 'ink';
 
-// prettier-ignore-start
 const O_BLOCK_ART = [
 ' ███ ',
 '█   █',
@@ -8,7 +7,6 @@ const O_BLOCK_ART = [
 '█   █',
 ' ███ '
 ];
-// prettier-ignore-end
 
 function O() {
     return (

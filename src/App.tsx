@@ -14,7 +14,7 @@ function App() {
         height: process.stdout.rows,
     });
 
-    const { gameState } = useGame();
+    const { gameState, focusCell, moveFocus } = useGame();
 
     useEffect(() => {
         const handleResize = () => {
@@ -31,9 +31,20 @@ function App() {
         };
     }, []);
 
-    useInput((input) => {
+    useInput((input, key) => {
         if (input.toLowerCase() === 'q') {
             exit();
+            return;
+        }
+
+        if (key.upArrow || input === 'k' || input === 'w') {
+            moveFocus('up');
+        } else if (key.downArrow || input === 'j' || input === 's') {
+            moveFocus('down');
+        } else if (key.leftArrow || input === 'h' || input === 'a') {
+            moveFocus('left');
+        } else if (key.rightArrow || input === 'l' || input === 'd') {
+            moveFocus('right');
         }
     });
 
@@ -49,7 +60,7 @@ function App() {
                 alignItems="stretch"
                 gap={1}
             >
-                <Board gameState={gameState} />
+                <Board gameState={gameState} focusCell={focusCell} />
                 <Details />
             </Box>
         </DimensionContext.Provider>
