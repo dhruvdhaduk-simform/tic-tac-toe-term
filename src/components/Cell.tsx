@@ -22,7 +22,7 @@ function Cell({ option, isFocus }: { option: CellOption; isFocus: boolean }) {
         <Box
             width={13}
             height={7}
-            borderColor={isFocus ? 'yellow' : 'white'}
+            borderColor={isFocus ? 'greenBright' : 'white'}
             borderStyle={isFocus ? 'double' : 'single'}
             justifyContent="center"
             alignItems="center"
