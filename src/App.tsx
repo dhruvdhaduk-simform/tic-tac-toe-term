@@ -30,6 +30,7 @@ function App({
         turn,
         moveFocus,
         handleBoardInput,
+        startNewGame,
     } = useGame(player1Name, player2Name);
 
     useEffect(() => {
@@ -65,6 +66,10 @@ function App({
             moveFocus('left');
         } else if (key.rightArrow || input === 'l' || input === 'd') {
             moveFocus('right');
+        }
+
+        if (gameStarted === false && key.return) {
+            startNewGame();
         }
     });
 

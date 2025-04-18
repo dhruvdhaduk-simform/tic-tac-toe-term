@@ -9,7 +9,9 @@ import type {
     PlayerMarks,
     GameStatistic,
     GameResult,
+    WinningLine,
 } from '../gameTypes';
+import checkWinner from '../utils/checkWinner';
 
 function useGame(player1Name: string, player2Name: string) {
     const [gameStarted, setGameStarted] = useState(true);
@@ -85,6 +87,24 @@ function useGame(player1Name: string, player2Name: string) {
         }
     };
 
+    const startNewGame = () => {
+        setGameStarted(true);
+        setGameResult({
+            status: 'playing',
+            winner: null,
+            winningLine: null,
+        });
+        setGameState([
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', ''],
+        ]);
+        setFocusCell({
+            row: 0,
+            col: 0,
+        });
+    };
+
     useEffect(() => {
         if (gameStarted) {
             const player1Mark = Math.random() < 0.5 ? 'O' : 'X';
@@ -97,6 +117,66 @@ function useGame(player1Name: string, player2Name: string) {
         }
     }, [gameStarted]);
 
+    useEffect(() => {
+        const winningLine = checkWinner(gameState);
+        if (winningLine) {
+            const winningMark = gameState[winningLine[0][0]][winningLine[0][1]];
+            if (winningMark === '') return;
+            let winner: 'player1' | 'player2';
+            if (playerMarks.player1 === winningMark) winner = 'player1';
+            else winner = 'player2';
+
+            setGameResult({
+                status: 'won',
+                winner,
+                winningLine: winningLine.map((cell) => ({
+                    row: cell[0],
+                    col: cell[1],
+                })) as WinningLine,
+            });
+
+            let player1Won = gameStatistics.player1Won;
+            let player2Won = gameStatistics.player2Won;
+
+            if (winner === 'player1') player1Won++;
+            else player2Won++;
+
+            setGameStatistics({
+                totalGames: gameStatistics.totalGames + 1,
+                player1Won,
+                player2Won,
+            });
+
+            setGameStarted(false);
+        } else {
+            let isEmptyCell = false;
+            gameState.forEach((gameStateRow) => {
+                if (!isEmptyCell) {
+                    gameStateRow.forEach((gameStateCell) => {
+                        if (gameStateCell === '') {
+                            isEmptyCell = true;
+                            return;
+                        }
+                    });
+                }
+            });
+
+            if (!isEmptyCell) {
+                setGameResult({
+                    status: 'draw',
+                    winner: null,
+                    winningLine: null,
+                });
+                setGameStatistics({
+                    totalGames: gameStatistics.totalGames + 1,
+                    player1Won: gameStatistics.player1Won,
+                    player2Won: gameStatistics.player2Won,
+                });
+                setGameStarted(false);
+            }
+        }
+    }, [gameState]);
+
     return {
         gameStarted,
         gameStatistics,
@@ -107,6 +187,7 @@ function useGame(player1Name: string, player2Name: string) {
         focusCell,
         moveFocus,
         handleBoardInput,
+        startNewGame,
     };
 }
 

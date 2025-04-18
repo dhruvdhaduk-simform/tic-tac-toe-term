@@ -26,11 +26,13 @@ export interface GameStatistic {
     player2Won: number;
 }
 
+export type WinningLine = [CellLocation, CellLocation, CellLocation];
+
 export type GameResult =
     | {
           status: 'won';
           winner: 'player1' | 'player2';
-          winningLine: [CellLocation, CellLocation, CellLocation];
+          winningLine: WinningLine;
       }
     | {
           status: 'draw' | 'playing';
