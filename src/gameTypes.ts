@@ -12,3 +12,28 @@ export interface CellLocation {
     row: Row;
     col: Col;
 }
+
+export type Turn = 'player1' | 'player2' | 'none';
+
+export interface PlayerMarks {
+    player1: Exclude<CellOption, ''>;
+    player2: Exclude<CellOption, ''>;
+}
+
+export interface GameStatistic {
+    totalGames: number;
+    player1Won: number;
+    player2Won: number;
+}
+
+export type GameResult =
+    | {
+          status: 'won';
+          winner: 'player1' | 'player2';
+          winningLine: [CellLocation, CellLocation, CellLocation];
+      }
+    | {
+          status: 'draw' | 'playing';
+          winner: null;
+          winningLine: null;
+      };

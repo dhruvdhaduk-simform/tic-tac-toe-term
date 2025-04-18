@@ -5,22 +5,23 @@ import type {
     Row,
     Col,
     CellOption,
+    Turn,
+    PlayerMarks,
+    GameStatistic,
+    GameResult,
 } from '../gameTypes';
 
 function useGame(player1Name: string, player2Name: string) {
     const [gameStarted, setGameStarted] = useState(true);
 
-    const [playerMarks, setPlayerMarks] = useState<{
-        player1: Exclude<CellOption, ''>;
-        player2: Exclude<CellOption, ''>;
-    }>({
+    const [playerMarks, setPlayerMarks] = useState<PlayerMarks>({
         player1: 'O',
         player2: 'X',
     });
 
-    const [turn, setTurn] = useState<'player1' | 'player2' | 'none'>('player1');
+    const [turn, setTurn] = useState<Turn>('player1');
 
-    const [gameStatistics, setGameStatistics] = useState({
+    const [gameStatistics, setGameStatistics] = useState<GameStatistic>({
         totalGames: 0,
         player1Won: 0,
         player2Won: 0,
@@ -37,18 +38,7 @@ function useGame(player1Name: string, player2Name: string) {
         col: 0,
     });
 
-    const [gameResult, setGameResult] = useState<
-        | {
-              status: 'won';
-              winner: 'player1' | 'player2';
-              winningLine: [CellLocation, CellLocation, CellLocation];
-          }
-        | {
-              status: 'draw' | 'playing';
-              winner: null;
-              winningLine: null;
-          }
-    >({
+    const [gameResult, setGameResult] = useState<GameResult>({
         status: 'playing',
         winner: null,
         winningLine: null,
