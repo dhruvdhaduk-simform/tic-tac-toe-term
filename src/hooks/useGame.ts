@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import {
-    FocusCell,
-    type GameState,
-    type Row,
-    type Col,
-    type CellOption,
+import type {
+    CellLocation,
+    GameState,
+    Row,
+    Col,
+    CellOption,
 } from '../gameTypes';
 
 function useGame(player1Name: string, player2Name: string) {
@@ -32,9 +32,26 @@ function useGame(player1Name: string, player2Name: string) {
         ['', '', ''],
     ]);
 
-    const [focusCell, setFocusCell] = useState<FocusCell>({
+    const [focusCell, setFocusCell] = useState<CellLocation>({
         row: 0,
         col: 0,
+    });
+
+    const [gameResult, setGameResult] = useState<
+        | {
+              status: 'won';
+              winner: 'player1' | 'player2';
+              winningLine: [CellLocation, CellLocation, CellLocation];
+          }
+        | {
+              status: 'draw' | 'playing';
+              winner: null;
+              winningLine: null;
+          }
+    >({
+        status: 'playing',
+        winner: null,
+        winningLine: null,
     });
 
     const moveFocus = (direction: 'up' | 'down' | 'left' | 'right') => {
@@ -96,6 +113,7 @@ function useGame(player1Name: string, player2Name: string) {
         playerMarks,
         turn,
         gameState,
+        gameResult,
         focusCell,
         moveFocus,
         handleBoardInput,

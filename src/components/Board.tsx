@@ -1,6 +1,6 @@
 import { Box } from 'ink';
 import Cell from './Cell';
-import type { CellOption, FocusCell, GameState } from '../gameTypes';
+import type { CellOption, CellLocation, GameState } from '../gameTypes';
 
 function Board({
     gameState,
@@ -8,7 +8,7 @@ function Board({
     previewMark,
 }: {
     gameState: GameState;
-    focusCell: FocusCell;
+    focusCell: CellLocation;
     previewMark: CellOption;
 }) {
     return (

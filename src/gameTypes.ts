@@ -8,7 +8,7 @@ export type GameState = [
 export type Row = 0 | 1 | 2;
 export type Col = 0 | 1 | 2;
 
-export interface FocusCell {
+export interface CellLocation {
     row: Row;
     col: Col;
 }
