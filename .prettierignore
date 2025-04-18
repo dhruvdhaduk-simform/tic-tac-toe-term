@@ -4,3 +4,4 @@ package-lock.json
 webpack.config.cjs
 src/components/O.tsx
 src/components/X.tsx
+src/utils/checkWinner.ts
