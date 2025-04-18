@@ -20,7 +20,15 @@ function App({
         height: process.stdout.rows,
     });
 
-    const { gameState, focusCell, moveFocus } = useGame();
+    const {
+        gameState,
+        focusCell,
+        gameStarted,
+        playerMarks,
+        turn,
+        moveFocus,
+        handleBoardInput,
+    } = useGame(player1Name, player2Name);
 
     useEffect(() => {
         const handleResize = () => {
@@ -41,6 +49,10 @@ function App({
         if (input.toLowerCase() === 'q') {
             exit();
             return;
+        }
+
+        if (input === ' ') {
+            handleBoardInput();
         }
 
         if (key.upArrow || input === 'k' || input === 'w') {
