@@ -8,9 +8,9 @@ const O_BLOCK_ART = [
 ' ███ '
 ];
 
-function O({ isPreview }: { isPreview?: boolean }) {
+function O({ isPreview, isInWinningLine }: { isPreview?: boolean, isInWinningLine?: boolean }) {
     return (
-        <Text color={isPreview ? 'blackBright' : 'whiteBright'}>
+        <Text color={isInWinningLine ? 'greenBright' : isPreview ? 'blackBright' : 'whiteBright'}>
             {
                 O_BLOCK_ART.map((line) => (
                     <>

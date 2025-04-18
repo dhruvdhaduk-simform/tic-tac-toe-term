@@ -9,18 +9,20 @@ function Cell({
     option,
     isFocus,
     previewMark,
+    isInWinningLine,
 }: {
     option: CellOption;
     isFocus: boolean;
     previewMark: CellOption;
+    isInWinningLine: boolean;
 }) {
     let content: JSX.Element | '';
     switch (option) {
         case 'O':
-            content = <O />;
+            content = <O isInWinningLine={isInWinningLine} />;
             break;
         case 'X':
-            content = <X />;
+            content = <X isInWinningLine={isInWinningLine} />;
             break;
         default:
             if (isFocus) {

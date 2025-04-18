@@ -91,6 +91,7 @@ function App({
                     gameState={gameState}
                     focusCell={focusCell}
                     previewMark={previewMark}
+                    gameResult={gameResult}
                 />
                 <Details
                     player1Name={player1Name}
