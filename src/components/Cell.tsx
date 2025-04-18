@@ -43,7 +43,9 @@ function Cell({
         <Box
             width={13}
             height={7}
-            borderColor={isFocus ? 'greenBright' : 'white'}
+            borderColor={
+                isFocus ? (option ? 'redBright' : 'greenBright') : 'white'
+            }
             borderStyle={isFocus ? 'double' : 'single'}
             justifyContent="center"
             alignItems="center"
