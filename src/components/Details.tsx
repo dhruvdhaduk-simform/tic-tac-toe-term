@@ -1,11 +1,25 @@
 import { Box, Text } from 'ink';
+import type {
+    GameResult,
+    GameStatistic,
+    PlayerMarks,
+    Turn,
+} from '../gameTypes';
 
 function Details({
     player1Name,
     player2Name,
+    turn,
+    playerMarks,
+    gameStatistics,
+    gameResult,
 }: {
     player1Name: string;
     player2Name: string;
+    turn: Turn;
+    playerMarks: PlayerMarks;
+    gameStatistics: GameStatistic;
+    gameResult: GameResult;
 }) {
     return (
         <Box
@@ -23,8 +37,22 @@ function Details({
                 alignItems="center"
                 gap={1}
             >
-                <Text>Hello, {player1Name}</Text>
-                <Text>Hello, {player2Name}</Text>
+                <Text>
+                    {playerMarks.player1}: {player1Name}
+                    {turn === 'player1' && "'s turn"}
+                </Text>
+                <Text>
+                    {playerMarks.player2}: {player2Name}
+                    {turn === 'player2' && "'s turn"}
+                </Text>
+                <Text>------------------------</Text>
+                <Text>Total Games : {gameStatistics.totalGames}</Text>
+                <Text>
+                    {player1Name} won : {gameStatistics.player1Won}
+                </Text>
+                <Text>
+                    {player2Name} won : {gameStatistics.player2Won}
+                </Text>
             </Box>
             <Box
                 flexDirection="column"

@@ -22,6 +22,8 @@ function App({
 
     const {
         gameState,
+        gameResult,
+        gameStatistics,
         focusCell,
         gameStarted,
         playerMarks,
@@ -85,7 +87,14 @@ function App({
                     focusCell={focusCell}
                     previewMark={previewMark}
                 />
-                <Details player1Name={player1Name} player2Name={player2Name} />
+                <Details
+                    player1Name={player1Name}
+                    player2Name={player2Name}
+                    turn={turn}
+                    playerMarks={playerMarks}
+                    gameResult={gameResult}
+                    gameStatistics={gameStatistics}
+                />
             </Box>
         </DimensionContext.Provider>
     );
