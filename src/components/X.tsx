@@ -8,9 +8,9 @@ const X_BLOCK_ART = [
 '█   █'
 ];
 
-function X() {
+function X({ isPreview }: { isPreview?: boolean }) {
     return (
-        <Text>
+        <Text color={isPreview ? 'blackBright' : 'whiteBright'}>
            {
                 X_BLOCK_ART.map((line) => (
                     <>

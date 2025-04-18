@@ -5,7 +5,15 @@ import type { JSX } from 'react';
 
 import type { CellOption } from '../gameTypes';
 
-function Cell({ option, isFocus }: { option: CellOption; isFocus: boolean }) {
+function Cell({
+    option,
+    isFocus,
+    previewMark,
+}: {
+    option: CellOption;
+    isFocus: boolean;
+    previewMark: CellOption;
+}) {
     let content: JSX.Element | '';
     switch (option) {
         case 'O':
@@ -15,7 +23,20 @@ function Cell({ option, isFocus }: { option: CellOption; isFocus: boolean }) {
             content = <X />;
             break;
         default:
-            content = '';
+            if (isFocus) {
+                switch (previewMark) {
+                    case 'O':
+                        content = <O isPreview={true} />;
+                        break;
+                    case 'X':
+                        content = <X isPreview={true} />;
+                        break;
+                    default:
+                        content = '';
+                }
+            } else {
+                content = '';
+            }
     }
 
     return (

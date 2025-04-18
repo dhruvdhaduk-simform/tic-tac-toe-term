@@ -8,9 +8,9 @@ const O_BLOCK_ART = [
 ' ███ '
 ];
 
-function O() {
+function O({ isPreview }: { isPreview?: boolean }) {
     return (
-        <Text>
+        <Text color={isPreview ? 'blackBright' : 'whiteBright'}>
             {
                 O_BLOCK_ART.map((line) => (
                     <>

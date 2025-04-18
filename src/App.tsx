@@ -68,6 +68,8 @@ function App({
 
     const aspectRatio = terminalDimensions.width / terminalDimensions.height;
 
+    const previewMark = turn !== 'none' ? playerMarks[turn] : '';
+
     return (
         <DimensionContext.Provider value={terminalDimensions}>
             <Box
@@ -78,7 +80,11 @@ function App({
                 alignItems="stretch"
                 gap={1}
             >
-                <Board gameState={gameState} focusCell={focusCell} />
+                <Board
+                    gameState={gameState}
+                    focusCell={focusCell}
+                    previewMark={previewMark}
+                />
                 <Details player1Name={player1Name} player2Name={player2Name} />
             </Box>
         </DimensionContext.Provider>
