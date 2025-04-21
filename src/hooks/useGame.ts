@@ -4,7 +4,6 @@ import type {
     GameState,
     Row,
     Col,
-    CellOption,
     Turn,
     PlayerMarks,
     GameStatistic,

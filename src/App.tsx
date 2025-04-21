@@ -1,10 +1,9 @@
-import { Text, useInput, useApp, Box } from 'ink';
+import { useInput, useApp, Box } from 'ink';
 import { useEffect, useState } from 'react';
 
 import Board from './components/Board';
 import Details from './components/Details';
 
-import { DimensionContext } from './contexts/DimensionContext';
 import useGame from './hooks/useGame';
 
 function App({
@@ -78,31 +77,29 @@ function App({
     const previewMark = turn !== 'none' ? playerMarks[turn] : '';
 
     return (
-        <DimensionContext.Provider value={terminalDimensions}>
-            <Box
-                width={terminalDimensions.width}
-                height={terminalDimensions.height}
-                flexDirection={aspectRatio > 2 ? 'row' : 'column'}
-                justifyContent="center"
-                alignItems="stretch"
-                gap={1}
-            >
-                <Board
-                    gameState={gameState}
-                    focusCell={focusCell}
-                    previewMark={previewMark}
-                    gameResult={gameResult}
-                />
-                <Details
-                    player1Name={player1Name}
-                    player2Name={player2Name}
-                    turn={turn}
-                    playerMarks={playerMarks}
-                    gameResult={gameResult}
-                    gameStatistics={gameStatistics}
-                />
-            </Box>
-        </DimensionContext.Provider>
+        <Box
+            width={terminalDimensions.width}
+            height={terminalDimensions.height}
+            flexDirection={aspectRatio > 2 ? 'row' : 'column'}
+            justifyContent="center"
+            alignItems="stretch"
+            gap={1}
+        >
+            <Board
+                gameState={gameState}
+                focusCell={focusCell}
+                previewMark={previewMark}
+                gameResult={gameResult}
+            />
+            <Details
+                player1Name={player1Name}
+                player2Name={player2Name}
+                turn={turn}
+                playerMarks={playerMarks}
+                gameResult={gameResult}
+                gameStatistics={gameStatistics}
+            />
+        </Box>
     );
 }
 
