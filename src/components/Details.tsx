@@ -5,6 +5,7 @@ import type {
     PlayerMarks,
     Turn,
 } from '../gameTypes';
+import { JSX } from 'react';
 
 function Details({
     player1Name,
@@ -21,6 +22,53 @@ function Details({
     gameStatistics: GameStatistic;
     gameResult: GameResult;
 }) {
+    let gameResultRender: JSX.Element;
+    switch (gameResult.status) {
+        case 'won':
+            gameResultRender = (
+                <>
+                    <Text color="greenBright" bold>
+                        {gameResult.winner === 'player1'
+                            ? `${player1Name} Won.`
+                            : `${player2Name} Won.`}
+                    </Text>
+                    <Text>Press "Enter" to start new game.</Text>
+                </>
+            );
+
+            break;
+        case 'draw':
+            gameResultRender = (
+                <>
+                    <Text color="greenBright" bold>
+                        Draw.
+                    </Text>
+                    <Text>Press "Enter" to start new game.</Text>
+                </>
+            );
+            break;
+        case 'playing':
+            gameResultRender = (
+                <>
+                    <Text
+                        bold={turn === 'player1'}
+                        color={turn === 'player1' ? 'greenBright' : 'white'}
+                    >
+                        {playerMarks.player1}: {player1Name}
+                        {turn === 'player1' && "'s turn"}
+                    </Text>
+                    <Text
+                        bold={turn === 'player2'}
+                        color={turn === 'player2' ? 'greenBright' : 'white'}
+                    >
+                        {playerMarks.player2}: {player2Name}
+                        {turn === 'player2' && "'s turn"}
+                    </Text>
+                </>
+            );
+            break;
+    }
+
     return (
         <Box
             borderColor="blackBright"
@@ -37,14 +85,7 @@ function Details({
                 alignItems="center"
                 gap={1}
             >
-                <Text>
-                    {playerMarks.player1}: {player1Name}
-                    {turn === 'player1' && "'s turn"}
-                </Text>
-                <Text>
-                    {playerMarks.player2}: {player2Name}
-                    {turn === 'player2' && "'s turn"}
-                </Text>
+                {gameResultRender}
                 <Text>------------------------</Text>
                 <Text>Total Games : {gameStatistics.totalGames}</Text>
                 <Text>

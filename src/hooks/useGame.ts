@@ -13,7 +13,7 @@ import type {
 } from '../gameTypes';
 import checkWinner from '../utils/checkWinner';
 
-function useGame(player1Name: string, player2Name: string) {
+function useGame() {
     const [gameStarted, setGameStarted] = useState(true);
 
     const [playerMarks, setPlayerMarks] = useState<PlayerMarks>({

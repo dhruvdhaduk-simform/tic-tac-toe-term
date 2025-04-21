@@ -31,7 +31,7 @@ function App({
         moveFocus,
         handleBoardInput,
         startNewGame,
-    } = useGame(player1Name, player2Name);
+    } = useGame();
 
     useEffect(() => {
         const handleResize = () => {
